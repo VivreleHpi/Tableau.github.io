@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau Périodique Magique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🔬 Le Tableau des Éléments Malik !</h1>
+    
+    <!-- Jeu de quiz -->
+    <div class="quiz-box">
+        <h2>Devine l'Élément ! 🧠</h2>
+        <div id="question"></div>
+        <div id="options"></div>
+        <p>Score : <span id="score">0</span> 🏆</p>
+        <button onclick="resetGame()">Nouvelle Partie 🔄</button>
+    </div>
+
+    <!-- Tableau périodique -->
+    <div class="grid-container" id="periodicTable"></div>
+
+    <!-- Fenêtre modale -->
+    <div id="infoModal" class="modal">
+        <div class="modal-box">
+            <span class="close" onclick="closeModal()">×</span>
+            <h2 id="elementTitle"></h2>
+            <div class="emoji-display" id="elementEmoji"></div>
+            <p id="elementFact"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
