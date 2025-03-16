@@ -1,20 +1,16 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tableau Périodique Interactif</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Import Google Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
 </head>
 <body>
   <h1>🔬 Le Tableau des Éléments - Vivre le HPI!</h1>
-  
-  <!-- Tableau périodique -->
   <div class="grid-container" id="periodicTable"></div>
 
-  <!-- Légende -->
   <div class="legend">
     <h2>Légende</h2>
     <div class="legend-item">
@@ -28,16 +24,6 @@
     </div>
   </div>
 
-  <!-- Quiz Interactif -->
-  <div id="quizContainer" class="quiz-box">
-    <h2>Quiz - Testez vos connaissances</h2>
-    <p id="quizQuestion"></p>
-    <input type="text" id="quizAnswer" placeholder="Votre réponse ici">
-    <button id="submitQuiz">Valider</button>
-    <p>Score : <span id="quizScore">0</span></p>
-  </div>
-
-  <!-- Détails de l'Élément -->
   <div id="elementDetails" class="details-box">
     <h2>Détails de l'Élément</h2>
     <p id="elementName">Clique sur un élément pour voir ses détails</p>
@@ -49,13 +35,19 @@
     <button id="voirPlusBtn" onclick="openModal()" style="display:none;">Voir plus</button>
   </div>
 
-  <!-- Fenêtre modale pour infos complémentaires -->
   <div id="infoModal" class="modal">
     <div class="modal-box">
       <span class="close" onclick="closeModal()">×</span>
       <h2 id="modalElementTitle"></h2>
       <div class="modalContent" id="modalContent"></div>
     </div>
+  </div>
+
+  <div id="quizContainer" class="quiz-container">
+    <h2>Quiz du Tableau Périodique</h2>
+    <p id="quizQuestion"></p>
+    <button onclick="startQuiz()">Commencer le Quiz</button>
+    <div id="quizResults"></div>
   </div>
 
   <script src="script.js"></script>
