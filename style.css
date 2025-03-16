@@ -37,7 +37,7 @@ h1 {
 /* Couleurs par catégorie */
 .metal { border-color: #ffd700; background: #fff9e6; }
 .non-metal { border-color: #98fb98; background: #f0fff0; }
-noble-gas { border-color: #dda0dd; background: #fdf0ff; }
+.noble-gas { border-color: #dda0dd; background: #fdf0ff; } /* Correction ici */
 
 .element:hover {
     transform: scale(1.05);
@@ -88,6 +88,54 @@ noble-gas { border-color: #dda0dd; background: #fdf0ff; }
 .emoji-display {
     font-size: 60px;
     margin: 20px 0;
+}
+
+/* Légende */
+.legend {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 10px;
+    background: #ffffff;
+    border: 2px solid #2b50aa;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.legend h2 {
+    text-align: center;
+    color: #2b50aa;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+/* Utilisation des classes existantes */
+.legend-color.metal {
+    border-color: #ffd700;
+    background: #fff9e6;
+}
+
+.legend-color.non-metal {
+    border-color: #98fb98;
+    background: #f0fff0;
+}
+
+.legend-color.noble-gas {
+    border-color: #dda0dd;
+    background: #fdf0ff;
 }
 
 /* ------------------- RESPONSIVE DESIGN ------------------- */
