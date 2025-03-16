@@ -17,48 +17,79 @@ const wikiLinks = {
   "Phosphore": "https://fr.wikipedia.org/wiki/Phosphore",
   "Soufre": "https://fr.wikipedia.org/wiki/Soufre",
   "Chlore": "https://fr.wikipedia.org/wiki/Chlore",
-  "Argon": "https://fr.wikipedia.org/wiki/Argon"
+  "Argon": "https://fr.wikipedia.org/wiki/Argon",
+  "Potassium": "https://fr.wikipedia.org/wiki/Potassium",
+  "Calcium": "https://fr.wikipedia.org/wiki/Calcium",
+  "Scandium": "https://fr.wikipedia.org/wiki/Scandium",
+  "Titane": "https://fr.wikipedia.org/wiki/Titane",
+  "Vanadium": "https://fr.wikipedia.org/wiki/Vanadium",
+  "Chrome": "https://fr.wikipedia.org/wiki/Chrome",
+  "Manganèse": "https://fr.wikipedia.org/wiki/Mangan%C3%A8se"
 };
 
-// Liste des éléments triés par numéro atomique
 const elements = [
-  { name: "Hydrogène", symbol: "H", number: 1, category: "non-metal", fact: "Présent dans l'eau 💧", details: "Exemple de molécule : H₂O." },
-  { name: "Hélium", symbol: "He", number: 2, category: "noble-gas", fact: "Utilisé dans les ballons 🎈", details: "Gaz inerte et léger." },
-  { name: "Lithium", symbol: "Li", number: 3, category: "metal", fact: "Utilisé dans les batteries 🔋", details: "Exemple de molécule : Li₂O." },
-  { name: "Béryllium", symbol: "Be", number: 4, category: "metal", fact: "Utilisé dans l'aérospatial 🚀", details: "Exemple de molécule : BeO." },
-  { name: "Bore", symbol: "B", number: 5, category: "metalloid", fact: "Utilisé dans les fibres de verre 🏗️", details: "Exemple : B₂O₃." },
-  { name: "Carbone", symbol: "C", number: 6, category: "non-metal", fact: "Diamants 💎", details: "Exemple de molécule : CO₂." },
-  { name: "Azote", symbol: "N", number: 7, category: "non-metal", fact: "Composant de l'air 🌬️", details: "Exemple : NH₃." },
-  { name: "Oxygène", symbol: "O", number: 8, category: "non-metal", fact: "Respiration 🌫️", details: "Exemple : H₂O." },
-  { name: "Fluor", symbol: "F", number: 9, category: "halogen", fact: "Dentifrice 🦷", details: "Exemple : NaF." },
-  { name: "Néon", symbol: "Ne", number: 10, category: "noble-gas", fact: "Enseignes lumineuses 💡", details: "Gaz noble émettant une lumière rouge-orange." },
-  { name: "Sodium", symbol: "Na", number: 11, category: "metal", fact: "Sel de table 🧂", details: "Exemple : NaCl." },
-  { name: "Magnésium", symbol: "Mg", number: 12, category: "metal", fact: "Présent dans le corps humain 💪", details: "Exemple : MgO." },
-  { name: "Aluminium", symbol: "Al", number: 13, category: "metal", fact: "Utilisé en aéronautique ✈️", details: "Exemple : Al₂O₃." },
-  { name: "Silicium", symbol: "Si", number: 14, category: "metalloid", fact: "Présent dans les puces électroniques 💾", details: "Exemple : SiO₂." },
-  { name: "Phosphore", symbol: "P", number: 15, category: "non-metal", fact: "Allumettes 🔥", details: "Exemple : P₄O₁₀." },
-  { name: "Soufre", symbol: "S", number: 16, category: "non-metal", fact: "Odeur des œufs pourris 🥚", details: "Exemple : SO₂." },
-  { name: "Chlore", symbol: "Cl", number: 17, category: "halogen", fact: "Désinfectant des piscines 🏊", details: "Exemple : NaCl." },
-  { name: "Argon", symbol: "Ar", number: 18, category: "noble-gas", fact: "Présent dans l'air 🌬️", details: "Utilisé dans les ampoules." }
+  { name: "Hydrogène", symbol: "H", number: 1, category: "non-metal" },
+  { name: "Hélium", symbol: "He", number: 2, category: "noble-gas" },
+  { name: "Lithium", symbol: "Li", number: 3, category: "metal" },
+  { name: "Béryllium", symbol: "Be", number: 4, category: "metal" },
+  { name: "Bore", symbol: "B", number: 5, category: "non-metal" },
+  { name: "Carbone", symbol: "C", number: 6, category: "non-metal" },
+  { name: "Azote", symbol: "N", number: 7, category: "non-metal" },
+  { name: "Oxygène", symbol: "O", number: 8, category: "non-metal" },
+  { name: "Fluor", symbol: "F", number: 9, category: "non-metal" },
+  { name: "Néon", symbol: "Ne", number: 10, category: "noble-gas" },
+  { name: "Sodium", symbol: "Na", number: 11, category: "metal" },
+  { name: "Magnésium", symbol: "Mg", number: 12, category: "metal" },
+  { name: "Aluminium", symbol: "Al", number: 13, category: "metal" },
+  { name: "Silicium", symbol: "Si", number: 14, category: "non-metal" },
+  { name: "Phosphore", symbol: "P", number: 15, category: "non-metal" },
+  { name: "Soufre", symbol: "S", number: 16, category: "non-metal" },
+  { name: "Chlore", symbol: "Cl", number: 17, category: "non-metal" },
+  { name: "Argon", symbol: "Ar", number: 18, category: "noble-gas" },
+  { name: "Potassium", symbol: "K", number: 19, category: "metal" },
+  { name: "Calcium", symbol: "Ca", number: 20, category: "metal" },
+  { name: "Scandium", symbol: "Sc", number: 21, category: "metal" },
+  { name: "Titane", symbol: "Ti", number: 22, category: "metal" },
+  { name: "Vanadium", symbol: "V", number: 23, category: "metal" },
+  { name: "Chrome", symbol: "Cr", number: 24, category: "metal" },
+  { name: "Manganèse", symbol: "Mn", number: 25, category: "metal" }
 ];
 
-// Ajout du jeu de quiz amélioré
+// Créer le tableau périodique
+function createPeriodicTable() {
+  const container = document.getElementById('periodicTable');
+  elements.forEach(element => {
+    const div = document.createElement('div');
+    div.className = `element ${element.category}`;
+    div.innerHTML = `<div>${element.symbol}</div><div>${element.number}</div>`;
+    div.addEventListener('click', () => showElementDetails(element));
+    container.appendChild(div);
+  });
+}
+
+// Affiche les détails de l'élément sélectionné
+function showElementDetails(element) {
+  document.getElementById('elementName').textContent = `${element.name} (${element.symbol})`;
+  document.getElementById('elementProperties').textContent = `Numéro atomique : ${element.number}`;
+  document.getElementById('wikiLink').href = wikiLinks[element.name];
+  document.getElementById('wikiLink').style.display = "block";
+}
+
+// Quiz
+let score = 0;
 function startQuiz() {
-  const question = elements[Math.floor(Math.random() * elements.length)];
-  document.getElementById('quizQuestion').textContent = `Clique sur l'élément : ${question.name} (${question.symbol})`;
-  document.getElementById('quizSection').dataset.answer = question.symbol;
+  const quizResults = document.getElementById('quizResults');
+  quizResults.innerHTML = '';
+  elements.forEach(element => {
+    const button = document.createElement('button');
+    button.textContent = element.symbol;
+    button.onclick = () => {
+      score++;
+      quizResults.innerHTML = `Score : ${score} / 25`;
+    };
+    quizResults.appendChild(button);
+  });
 }
 
-function checkAnswer(symbol) {
-  const correct = document.getElementById('quizSection').dataset.answer;
-  if (symbol === correct) {
-    alert('Bonne réponse !');
-  } else {
-    alert(`Mauvaise réponse ! C'était ${correct}.`);
-  }
-  startQuiz();
-}
-
-// Initialisation du tableau et du quiz
-createPeriodicTable();
-startQuiz();
+// Initialisation
+document.addEventListener('DOMContentLoaded', createPeriodicTable);
