@@ -34,7 +34,7 @@ h1 {
 /* Couleurs par catégorie */
 .metal { border-color: #ffd700; background: #fff9e6; }
 .non-metal { border-color: #98fb98; background: #f0fff0; }
-.noble-gas { border-color: #dda0dd; background: #fdf0ff; }
+noble-gas { border-color: #dda0dd; background: #fdf0ff; }
 
 .element:hover {
     transform: scale(1.05);
@@ -85,4 +85,47 @@ h1 {
 .emoji-display {
     font-size: 60px;
     margin: 20px 0;
+}
+
+/* ------------------- RESPONSIVE DESIGN ------------------- */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 3px;
+    }
+
+    .element {
+        padding: 5px;
+        font-size: 0.8em;
+    }
+
+    .quiz-box {
+        padding: 10px;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+    }
+
+    .element {
+        padding: 3px;
+        font-size: 0.7em;
+    }
+
+    #options button {
+        padding: 8px;
+        font-size: 0.9em;
+    }
 }
