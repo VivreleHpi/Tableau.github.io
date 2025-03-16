@@ -1,3 +1,5 @@
+// JavaScript pour le Tableau Périodique Interactif - Vivre le HPI!
+
 // Mapping des liens Wikipédia pour chaque élément
 const wikiLinks = {
   "Hydrogène": "https://fr.wikipedia.org/wiki/Hydrog%C3%A8ne",
@@ -9,7 +11,7 @@ const wikiLinks = {
   "Azote": "https://fr.wikipedia.org/wiki/Azote",
   "Oxygène": "https://fr.wikipedia.org/wiki/Oxyg%C3%A8ne",
   "Fluor": "https://fr.wikipedia.org/wiki/Fluor",
-  "Néon": "https://fr.wikipedia.org/wiki/N%C3%A9on",
+  "Neon": "https://fr.wikipedia.org/wiki/N%C3%A9on",
   "Sodium": "https://fr.wikipedia.org/wiki/Sodium",
   "Magnésium": "https://fr.wikipedia.org/wiki/Magn%C3%A9sium",
   "Aluminium": "https://fr.wikipedia.org/wiki/Aluminium",
@@ -19,77 +21,57 @@ const wikiLinks = {
   "Chlore": "https://fr.wikipedia.org/wiki/Chlore",
   "Argon": "https://fr.wikipedia.org/wiki/Argon",
   "Potassium": "https://fr.wikipedia.org/wiki/Potassium",
-  "Calcium": "https://fr.wikipedia.org/wiki/Calcium",
-  "Scandium": "https://fr.wikipedia.org/wiki/Scandium",
-  "Titane": "https://fr.wikipedia.org/wiki/Titane",
-  "Vanadium": "https://fr.wikipedia.org/wiki/Vanadium",
-  "Chrome": "https://fr.wikipedia.org/wiki/Chrome",
-  "Manganèse": "https://fr.wikipedia.org/wiki/Mangan%C3%A8se"
+  "Calcium": "https://fr.wikipedia.org/wiki/Calcium"
 };
 
+// Liste des éléments avec infos et émojis
 const elements = [
-  { name: "Hydrogène", symbol: "H", number: 1, category: "non-metal" },
-  { name: "Hélium", symbol: "He", number: 2, category: "noble-gas" },
-  { name: "Lithium", symbol: "Li", number: 3, category: "metal" },
-  { name: "Béryllium", symbol: "Be", number: 4, category: "metal" },
-  { name: "Bore", symbol: "B", number: 5, category: "non-metal" },
-  { name: "Carbone", symbol: "C", number: 6, category: "non-metal" },
-  { name: "Azote", symbol: "N", number: 7, category: "non-metal" },
-  { name: "Oxygène", symbol: "O", number: 8, category: "non-metal" },
-  { name: "Fluor", symbol: "F", number: 9, category: "non-metal" },
-  { name: "Néon", symbol: "Ne", number: 10, category: "noble-gas" },
-  { name: "Sodium", symbol: "Na", number: 11, category: "metal" },
-  { name: "Magnésium", symbol: "Mg", number: 12, category: "metal" },
-  { name: "Aluminium", symbol: "Al", number: 13, category: "metal" },
-  { name: "Silicium", symbol: "Si", number: 14, category: "non-metal" },
-  { name: "Phosphore", symbol: "P", number: 15, category: "non-metal" },
-  { name: "Soufre", symbol: "S", number: 16, category: "non-metal" },
-  { name: "Chlore", symbol: "Cl", number: 17, category: "non-metal" },
-  { name: "Argon", symbol: "Ar", number: 18, category: "noble-gas" },
-  { name: "Potassium", symbol: "K", number: 19, category: "metal" },
-  { name: "Calcium", symbol: "Ca", number: 20, category: "metal" },
-  { name: "Scandium", symbol: "Sc", number: 21, category: "metal" },
-  { name: "Titane", symbol: "Ti", number: 22, category: "metal" },
-  { name: "Vanadium", symbol: "V", number: 23, category: "metal" },
-  { name: "Chrome", symbol: "Cr", number: 24, category: "metal" },
-  { name: "Manganèse", symbol: "Mn", number: 25, category: "metal" }
+  { name: "Hydrogène", symbol: "H", number: 1, category: "non-metal", fact: "Présent dans l'eau 💧", examples: ["H₂O", "H₂"] },
+  { name: "Hélium", symbol: "He", number: 2, category: "noble-gas", fact: "Ballons 🎈", examples: ["He"] },
+  { name: "Lithium", symbol: "Li", number: 3, category: "metal", fact: "Piles 🔋", examples: ["Li₂O"] },
+  { name: "Béryllium", symbol: "Be", number: 4, category: "metal", fact: "Fusées 🚀", examples: ["BeO"] },
+  { name: "Bore", symbol: "B", number: 5, category: "non-metal", fact: "Verres résistants 🏺", examples: ["B₂O₃"] },
+  { name: "Carbone", symbol: "C", number: 6, category: "non-metal", fact: "Diamants 💎", examples: ["CO₂"] },
+  { name: "Azote", symbol: "N", number: 7, category: "non-metal", fact: "Engrais 🌱", examples: ["NH₃"] },
+  { name: "Oxygène", symbol: "O", number: 8, category: "non-metal", fact: "Respiration 🌬️", examples: ["O₂", "H₂O"] },
+  { name: "Fluor", symbol: "F", number: 9, category: "non-metal", fact: "Dentifrice 🪥", examples: ["NaF"] },
+  { name: "Neon", symbol: "Ne", number: 10, category: "noble-gas", fact: "Lumières 💡", examples: ["Ne"] },
+  { name: "Sodium", symbol: "Na", number: 11, category: "metal", fact: "Sel de cuisine 🧂", examples: ["NaCl"] },
+  { name: "Magnésium", symbol: "Mg", number: 12, category: "metal", fact: "Chocolat 🍫", examples: ["MgO"] },
+  { name: "Aluminium", symbol: "Al", number: 13, category: "metal", fact: "Canettes 🥫", examples: ["Al₂O₃"] },
+  { name: "Silicium", symbol: "Si", number: 14, category: "non-metal", fact: "Ordinateurs 💻", examples: ["SiO₂"] },
+  { name: "Phosphore", symbol: "P", number: 15, category: "non-metal", fact: "Allumettes 🔥", examples: ["P₄O₁₀"] },
+  { name: "Soufre", symbol: "S", number: 16, category: "non-metal", fact: "Odeur d'œuf 🥚", examples: ["H₂S"] },
+  { name: "Chlore", symbol: "Cl", number: 17, category: "non-metal", fact: "Piscines 🏊", examples: ["NaCl"] },
+  { name: "Argon", symbol: "Ar", number: 18, category: "noble-gas", fact: "Ampoules 💡", examples: ["Ar"] },
+  { name: "Potassium", symbol: "K", number: 19, category: "metal", fact: "Bananes 🍌", examples: ["KCl"] },
+  { name: "Calcium", symbol: "Ca", number: 20, category: "metal", fact: "Os solides 🦴", examples: ["CaCO₃"] }
 ];
 
-// Créer le tableau périodique
+// Initialisation du tableau
 function createPeriodicTable() {
   const container = document.getElementById('periodicTable');
+  container.innerHTML = '';
   elements.forEach(element => {
     const div = document.createElement('div');
     div.className = `element ${element.category}`;
-    div.innerHTML = `<div>${element.symbol}</div><div>${element.number}</div>`;
+    div.innerHTML = `<div class="symbol">${element.symbol}</div><div class="number">${element.number}</div>`;
     div.addEventListener('click', () => showElementDetails(element));
     container.appendChild(div);
   });
 }
 
-// Affiche les détails de l'élément sélectionné
+// Affichage des détails
 function showElementDetails(element) {
   document.getElementById('elementName').textContent = `${element.name} (${element.symbol})`;
-  document.getElementById('elementProperties').textContent = `Numéro atomique : ${element.number}`;
-  document.getElementById('wikiLink').href = wikiLinks[element.name];
-  document.getElementById('wikiLink').style.display = "block";
+  document.getElementById('elementProperties').textContent = `Numéro Atomique : ${element.number}`;
+  document.getElementById('elementApplications').textContent = element.fact;
+  document.getElementById('elementExample').textContent = `Exemples de molécules : ${element.examples.join(', ')}`;
+  const wikiLink = document.getElementById('wikiLink');
+  wikiLink.href = wikiLinks[element.name] || '#';
+  wikiLink.style.display = 'inline';
 }
 
-// Quiz
-let score = 0;
-function startQuiz() {
-  const quizResults = document.getElementById('quizResults');
-  quizResults.innerHTML = '';
-  elements.forEach(element => {
-    const button = document.createElement('button');
-    button.textContent = element.symbol;
-    button.onclick = () => {
-      score++;
-      quizResults.innerHTML = `Score : ${score} / 25`;
-    };
-    quizResults.appendChild(button);
-  });
-}
+// Démarrage
+createPeriodicTable();
 
-// Initialisation
-document.addEventListener('DOMContentLoaded', createPeriodicTable);
