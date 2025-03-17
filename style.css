@@ -1,75 +1,48 @@
-/* === style.css === */
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+  margin: 20px;
   text-align: center;
-  background: #f4f4f9;
 }
-
-/* Conteneur principal */
-.container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 20px;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
-
-/* Titre */
-h1 {
-  color: #333;
-}
-
-/* Quiz */
-#quiz {
+.quiz-container, .table-container {
   margin-bottom: 20px;
-  background: #e3f2fd;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
-/* Tableau périodique */
-#periodicTable {
+.grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  margin: 20px 0;
-}
-
-/* Élément */
-.element {
-  display: flex;
-  align-items: center;
   justify-content: center;
-  background: #90caf9;
-  color: #fff;
-  padding: 15px;
-  border-radius: 5px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: transform 0.1s ease;
 }
-
+.element {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
 .element:hover {
-  background: #64b5f6;
   transform: scale(1.1);
 }
-
-/* Bouton quiz */
+.element.H { background: #ffadad; }  /* Hydrogène */
+.element.He { background: #ffd6a5; } /* Hélium */
+.element.Li { background: #fdffb6; } /* Lithium */
+.element.Be { background: #caffbf; } /* Béryllium */
+.element.B { background: #9bf6ff; }  /* Bore */
+.element.C { background: #a0c4ff; }  /* Carbone */
+.element.N { background: #bdb2ff; }  /* Azote */
+.element.O { background: #ffc6ff; }  /* Oxygène */
+.element.F { background: #fffffc; }  /* Fluor */
+.element.Ne { background: #d0f4de; } /* Néon */
 button {
-  background: #64b5f6;
-  color: white;
-  border: none;
   padding: 10px 20px;
   margin: 10px;
+  border: none;
+  background: #007bff;
+  color: white;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+}
+button:hover {
+  background: #0056b3;
 }
 
-button:hover {
-  background: #42a5f5;
-}
