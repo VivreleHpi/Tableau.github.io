@@ -1,33 +1,69 @@
-<!-- Ajout d'une sélection de difficulté et de types de questions -->
-<div id="quizConfig">
-  <h3>Options du Quiz ⚙️</h3>
-  <div>
-    <label>Nombre de questions :</label>
-    <select id="questionCount">
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="25">Tous</option>
-    </select>
-  </div>
-  <div>
-    <label>Types de questions :</label>
-    <div>
-      <input type="checkbox" id="symbolQuestions" checked> Symboles
-      <input type="checkbox" id="numberQuestions"> Numéros atomiques
-      <input type="checkbox" id="categoryQuestions"> Catégories
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau Périodique Interactif - Vivre le HPI!</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Import Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+</head>
+<body>
+  <h1>🔬 Le Tableau des Éléments - Vivre le HPI!</h1>
+  
+  <!-- Compteur de points global (hors quiz) -->
+  <div id="scoreBoard">Score : <span id="score">0</span></div>
+  
+  <!-- Tableau périodique -->  
+  <div class="grid-container" id="periodicTable"></div>
+
+  <!-- Légende -->
+  <div class="legend">
+    <h2>Légende</h2>
+    <div class="legend-item">
+      <div class="legend-color metal"></div> Métaux
+    </div>
+    <div class="legend-item">
+      <div class="legend-color non-metal"></div> Non-métaux
+    </div>
+    <div class="legend-item">
+      <div class="legend-color noble-gas"></div> Gaz nobles
     </div>
   </div>
-  <button onclick="startQuiz()">Démarrer le Quiz 🚀</button>
-</div>
 
-<!-- Ajout d'un chronomètre et barre de progression -->
-<div id="quizStats">
-  <div id="timer">⏳ Temps : <span id="time">00:00</span></div>
-  <div id="progress">Question <span id="currentQ">1</span>/<span id="totalQ">10</span></div>
-</div>
+  <!-- Détails de l'Élément -->  
+  <div id="elementDetails" class="details-box">
+    <h2>Détails de l'Élément</h2>
+    <p id="elementName">Clique sur un élément pour voir ses détails</p>
+    <p id="elementProperties"></p>
+    <p id="elementExample"></p>
+    <p id="elementApplications"></p>
+    <p id="elementReaction"></p>
+    <a id="wikiLink" href="#" target="_blank" style="display:none;">En savoir plus sur Wikipédia</a>
+    <br>
+    <button id="voirPlusBtn" onclick="openModal()" style="display:none;">Voir plus</button>
+  </div>
 
-<!-- Modification du feedback pour afficher plus d'informations -->
-<div id="quizFeedback" class="feedback-box">
-  <p id="feedbackText"></p>
-  <button onclick="nextQuizQuestion()" id="nextButton" style="display:none;">Suivant ➡️</button>
-</div>
+  <!-- Fenêtre modale pour infos complémentaires -->  
+  <div id="infoModal" class="modal">
+    <div class="modal-box">
+      <span class="close" onclick="closeModal()">×</span>
+      <h2 id="modalElementTitle"></h2>
+      <div class="modalContent" id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Quiz -->  
+  <div id="quizContainer" class="quiz-box">
+    <h2>Quiz sur les Éléments 🧠</h2>
+    <p id="quizQuestion">Clique sur "Démarrer le Quiz" pour commencer !</p>
+    <button id="startQuizBtn" onclick="startQuiz()">Démarrer le Quiz 🚀</button>
+    <p id="quizFeedback"></p>
+    <p id="quizScore" style="display:none;">Score : <span id="scoreQuiz">0</span></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
