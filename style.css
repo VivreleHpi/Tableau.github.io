@@ -1,44 +1,75 @@
+/* === style.css === */
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
+  margin: 0;
+  padding: 0;
   text-align: center;
+  background: #f4f4f9;
 }
-.grid-container {
+
+/* Conteneur principal */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Titre */
+h1 {
+  color: #333;
+}
+
+/* Quiz */
+#quiz {
+  margin-bottom: 20px;
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Tableau périodique */
+#periodicTable {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  justify-content: center;
-  margin-top: 20px;
+  margin: 20px 0;
 }
+
+/* Élément */
 .element {
-  border: 1px solid #ccc;
-  padding: 10px;
-  cursor: pointer;
-  background: #f0f0f0;
-  transition: background 0.3s;
-}
-.element:hover {
-  background: #dcdcdc;
-}
-.details-box {
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background: #f9f9f9;
-}
-#quiz-container button {
-  margin: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-#popup {
-  display: none;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #90caf9;
+  color: #fff;
+  padding: 15px;
   border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.element:hover {
+  background: #64b5f6;
+  transform: scale(1.1);
+}
+
+/* Bouton quiz */
+button {
+  background: #64b5f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #42a5f5;
 }
