@@ -1,48 +1,54 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  text-align: center;
-}
-.quiz-container, .table-container {
-  margin-bottom: 20px;
-}
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  justify-content: center;
-}
-.element {
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.1s;
-}
-.element:hover {
-  transform: scale(1.1);
-}
-.element.H { background: #ffadad; }  /* Hydrogène */
-.element.He { background: #ffd6a5; } /* Hélium */
-.element.Li { background: #fdffb6; } /* Lithium */
-.element.Be { background: #caffbf; } /* Béryllium */
-.element.B { background: #9bf6ff; }  /* Bore */
-.element.C { background: #a0c4ff; }  /* Carbone */
-.element.N { background: #bdb2ff; }  /* Azote */
-.element.O { background: #ffc6ff; }  /* Oxygène */
-.element.F { background: #fffffc; }  /* Fluor */
-.element.Ne { background: #d0f4de; } /* Néon */
-button {
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
-  background: #007bff;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-button:hover {
-  background: #0056b3;
+/* Nouveaux styles pour le quiz */
+#quizConfig {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px auto;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
+#quizStats {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+.feedback-box {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 20px auto;
+  max-width: 600px;
+  transition: all 0.3s ease;
+}
+
+.correct-answer {
+  animation: correctAnim 0.5s ease;
+}
+
+.wrong-answer {
+  animation: wrongAnim 0.5s ease;
+}
+
+@keyframes correctAnim {
+  0% { background: #fff; }
+  50% { background: #c8f7c5; }
+  100% { background: #fff; }
+}
+
+@keyframes wrongAnim {
+  0% { background: #fff; }
+  50% { background: #ffd1d1; }
+  100% { background: #fff; }
+}
+
+.highlight-correct {
+  box-shadow: 0 0 15px #2ecc71;
+  transform: scale(1.05);
+}
+
+.highlight-wrong {
+  box-shadow: 0 0 15px #e74c3c;
+  transform: scale(0.95);
+}
