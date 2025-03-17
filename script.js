@@ -1,65 +1,167 @@
-// === script.js ===
-const elements = [
-  { symbol: 'H', name: 'Hydrogène', examples: 'H2, H2O', applications: 'Carburant, Eau', emoji: '💧', wiki: 'https://fr.wikipedia.org/wiki/Hydrog%C3%A8ne' },
-  { symbol: 'He', name: 'Hélium', examples: 'He', applications: 'Ballons, Cryogénie', emoji: '🎈', wiki: 'https://fr.wikipedia.org/wiki/H%C3%A9lium' },
-  { symbol: 'Li', name: 'Lithium', examples: 'Li', applications: 'Batteries, Médicaments', emoji: '🔋', wiki: 'https://fr.wikipedia.org/wiki/Lithium' },
-  { symbol: 'Be', name: 'Béryllium', examples: 'Be', applications: 'Aérospatiale, Alliages', emoji: '🚀', wiki: 'https://fr.wikipedia.org/wiki/B%C3%A9ryllium' },
-  { symbol: 'B', name: 'Bore', examples: 'B2O3', applications: 'Fibres, Verre', emoji: '🪵', wiki: 'https://fr.wikipedia.org/wiki/Bore' },
-  { symbol: 'C', name: 'Carbone', examples: 'C, CO2, CH4', applications: 'Vie, Combustion, Plastiques', emoji: '🌱', wiki: 'https://fr.wikipedia.org/wiki/Carbone' },
-  { symbol: 'N', name: 'Azote', examples: 'N2, NH3', applications: 'Engrais, Réfrigération', emoji: '❄️', wiki: 'https://fr.wikipedia.org/wiki/Azote' },
-  { symbol: 'O', name: 'Oxygène', examples: 'O2, H2O', applications: 'Respiration, Combustion', emoji: '🌬️', wiki: 'https://fr.wikipedia.org/wiki/Oxyg%C3%A8ne' },
-  { symbol: 'F', name: 'Fluor', examples: 'F2', applications: 'Dentifrice, Industrie', emoji: '🪥', wiki: 'https://fr.wikipedia.org/wiki/Fluor' },
-  { symbol: 'Ne', name: 'Néon', examples: 'Ne', applications: 'Enseignes lumineuses', emoji: '💡', wiki: 'https://fr.wikipedia.org/wiki/N%C3%A9on' },
-];
+/* Nouvelles fonctionnalités du quiz */
+let timeElapsed = 0;
+let timerInterval;
+let quizConfig = {
+  questionCount: 10,
+  questionTypes: ['symbol']
+};
 
-// Initialisation du quiz
-let quizActive = false;
-let quizIndex = 0;
-let score = 0;
-
-// Mélanger les éléments pour un quiz aléatoire
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-
-// Lancer le quiz
 function startQuiz() {
-  quizActive = true;
-  quizIndex = 0;
-  score = 0;
-  shuffle(elements);
-  askQuestion();
+  // Récupération de la configuration
+  quizConfig.questionCount = parseInt(document.getElementById('questionCount').value);
+  quizConfig.questionTypes = [];
+  if(document.getElementById('symbolQuestions').checked) quizConfig.questionTypes.push('symbol');
+  if(document.getElementById('numberQuestions').checked) quizConfig.questionTypes.push('number');
+  if(document.getElementById('categoryQuestions').checked) quizConfig.questionTypes.push('category');
+
+  // Initialisation
+  quizQuestions = generateQuestions();
+  currentQuizIndex = 0;
+  quizScore = 0;
+  wrongAnswers = [];
+  timeElapsed = 0;
+  
+  // Démarrage du chrono
+  timerInterval = setInterval(() => {
+    timeElapsed++;
+    document.getElementById('time').textContent = 
+      `${Math.floor(timeElapsed/60).toString().padStart(2,'0')}:${(timeElapsed%60).toString().padStart(2,'0')}`;
+  }, 1000);
+
+  // Affichage
+  document.getElementById('quizScore').style.display = 'block';
+  document.getElementById('currentQ').textContent = 1;
+  document.getElementById('totalQ').textContent = quizConfig.questionCount;
+  nextQuizQuestion();
 }
 
-// Afficher la question du quiz
-function askQuestion() {
-  const element = elements[quizIndex];
-  document.getElementById('quizQuestion').innerText = `Trouve : ${element.name} ${element.emoji}`;
+function generateQuestions() {
+  const questions = [];
+  const shuffledElements = [...elements].sort(() => Math.random() - 0.5);
+  
+  shuffledElements.slice(0, quizConfig.questionCount).forEach(element => {
+    const questionType = quizConfig.questionTypes[Math.floor(Math.random() * quizConfig.questionTypes.length)];
+    
+    let question;
+    switch(questionType) {
+      case 'symbol':
+        question = {
+          type: 'symbol',
+          text: `Quel est le symbole du ${element.name} ?`,
+          answer: element.symbol,
+          element: element
+        };
+        break;
+      case 'number':
+        question = {
+          type: 'number',
+          text: `Quel est le numéro atomique du ${element.name} ?`,
+          answer: element.number,
+          element: element
+        };
+        break;
+      case 'category':
+        question = {
+          type: 'category',
+          text: `À quelle catégorie appartient le ${element.name} ?`,
+          answer: element.category,
+          element: element
+        };
+        break;
+    }
+    questions.push(question);
+  });
+  
+  return questions;
 }
 
-// Sélectionner un élément
-function selectElement(index) {
-  if (quizActive) {
-    if (elements[quizIndex].symbol === elements[index].symbol) {
-      score++;
-      alert(`Bonne réponse ! ✅\nScore : ${score}`);
-    } else {
-      alert(`Mauvaise réponse ❌\nLa bonne réponse était : ${elements[quizIndex].name}`);
+function checkQuizAnswer(selectedElement) {
+  const question = quizQuestions[currentQuizIndex];
+  let isCorrect = false;
+  
+  switch(question.type) {
+    case 'symbol':
+      isCorrect = (selectedElement.symbol === question.answer);
+      break;
+    case 'number':
+      isCorrect = (selectedElement.number === question.answer);
+      break;
+    case 'category':
+      isCorrect = (selectedElement.category === question.answer);
+      break;
+  }
+
+  // Feedback visuel
+  document.getElementById('periodicTable').querySelectorAll('.element').forEach(el => {
+    el.classList.remove('highlight-correct', 'highlight-wrong');
+    const elementName = el.querySelector('.symbol').textContent;
+    const realElement = elements.find(e => e.symbol === elementName);
+    
+    if(realElement[question.type] === question.answer) {
+      el.classList.add('highlight-correct');
     }
-    quizIndex++;
-    if (quizIndex < elements.length) {
-      askQuestion();
-    } else {
-      alert(`Quiz terminé ! Score : ${score} / ${elements.length}`);
-      quizActive = false;
+    if(realElement === selectedElement && !isCorrect) {
+      el.classList.add('highlight-wrong');
     }
+  });
+
+  // Gestion score et feedback
+  const feedback = document.getElementById('feedbackText');
+  if(isCorrect) {
+    quizScore++;
+    feedback.innerHTML = `✅ Correct !<br>${getFactMessage(question.element)}`;
   } else {
-    const element = elements[index];
-    alert(`${element.name} ${element.emoji}\nExemples : ${element.examples}\nApplications : ${element.applications}\nWiki : ${element.wiki}`);
+    feedback.innerHTML = `❌ Incorrect !<br>La bonne réponse était : ${formatAnswer(question)}<br>
+                         ${getFactMessage(question.element)}`;
+    wrongAnswers.push(question);
+  }
+
+  document.getElementById('scoreQuiz').textContent = quizScore;
+  document.getElementById('nextButton').style.display = 'block';
+}
+
+function formatAnswer(question) {
+  switch(question.type) {
+    case 'symbol': return question.answer;
+    case 'number': return question.answer;
+    case 'category': return translateCategory(question.answer);
   }
 }
 
-document.addEventListener('DOMContentLoaded', startQuiz);
+function translateCategory(category) {
+  const categories = {
+    'metal': 'Métal',
+    'non-metal': 'Non-métal',
+    'noble-gas': 'Gaz noble'
+  };
+  return categories[category] || category;
+}
+
+function getFactMessage(element) {
+  return `Le saviez-vous ? ${element.fact} ${element.emoji}`;
+}
+
+function endQuiz() {
+  clearInterval(timerInterval);
+  // Affichage des résultats dans une modale
+  const modalContent = `
+    <h2>Résultats du Quiz 🎉</h2>
+    <p>Score final : ${quizScore}/${quizQuestions.length}</p>
+    <p>Temps écoulé : ${document.getElementById('time').textContent}</p>
+    ${wrongAnswers.length > 0 ? `
+    <div class="wrong-answers">
+      <h3>Réponses à réviser :</h3>
+      ${wrongAnswers.map(q => `
+        <div class="wrong-answer">
+          <p><strong>${q.element.name}</strong></p>
+          <p>Question : ${q.text}</p>
+          <p>Votre réponse : ${formatAnswer(q)}</p>
+        </div>
+      `).join('')}
+    </div>` : ''}
+    <button onclick="location.reload()">Rejouer 🔄</button>
+  `;
+  
+  // Afficher la modale avec les résultats
+  showModal("Résultats du Quiz", modalContent);
+}
