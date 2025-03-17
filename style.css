@@ -1,134 +1,44 @@
-/* Style général */
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: Arial, sans-serif;
   margin: 20px;
   text-align: center;
-  background: #f4f4f4;
 }
-h1 {
-  color: #333;
-}
-
-/* Compteur de score */
-#scoreBoard {
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  color: #16a085;
-}
-
-/* Grille du tableau périodique */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  margin: 20px 0;
+  justify-content: center;
+  margin-top: 20px;
 }
-
-/* Style des éléments */
 .element {
-  background: white;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  padding: 10px;
   cursor: pointer;
-  transition: transform 0.1s, box-shadow 0.1s;
+  background: #f0f0f0;
+  transition: background 0.3s;
 }
 .element:hover {
-  transform: translateY(-5px);
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+  background: #dcdcdc;
 }
-.symbol {
-  font-size: 24px;
-  font-weight: bold;
-}
-.number {
-  font-size: 16px;
-  color: #777;
-}
-.emoji {
-  font-size: 28px;
-  margin-top: 5px;
-}
-
-/* Couleurs par catégorie */
-.metal { background: #ffd700; }
-.non-metal { background: #90ee90; }
-.noble-gas { background: #87ceeb; }
-
-/* Légende */
-.legend {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-.legend-item {
-  margin: 0 10px;
-  display: flex;
-  align-items: center;
-}
-.legend-color {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-  border: 1px solid #2c3e50;
-}
-
-/* Détails de l'Élément */
 .details-box {
-  background: white;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 15px;
-  margin: 20px auto;
-  max-width: 400px;
-  box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
 }
-
-/* Modale */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: center;
-}
-.modal-box {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 500px;
-  text-align: left;
-}
-.close {
-  float: right;
-  cursor: pointer;
-  font-size: 24px;
-}
-
-/* Quiz */
-.quiz-box {
-  background: white;
-  border: 2px solid #333;
-  border-radius: 10px;
-  padding: 15px;
-  margin: 20px auto;
-  max-width: 500px;
-  box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
-}
-button {
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
+#quiz-container button {
+  margin: 10px;
   padding: 10px 20px;
   cursor: pointer;
-  margin: 5px;
 }
-button:hover {
-  background: #0056b3;
+#popup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 5px;
 }
