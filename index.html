@@ -1,25 +1,33 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="styles.css">
-  <title>Tableau Périodique Interactif</title>
-</head>
-<body>
-  <div class="quiz-container">
-    <h1>Quiz des Éléments</h1>
-    <p id="quizQuestion">Cliquez sur "Démarrer le Quiz" pour commencer !</p>
-    <button onclick="startQuiz()">Démarrer le Quiz</button>
-    <button onclick="cancelQuiz()" id="cancelQuiz" style="display:none;">Annuler le Quiz</button>
+<!-- Ajout d'une sélection de difficulté et de types de questions -->
+<div id="quizConfig">
+  <h3>Options du Quiz ⚙️</h3>
+  <div>
+    <label>Nombre de questions :</label>
+    <select id="questionCount">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="25">Tous</option>
+    </select>
   </div>
-
-  <div class="table-container">
-    <h2>Tableau Périodique Interactif</h2>
-    <div id="periodicTable" class="grid-container"></div>
+  <div>
+    <label>Types de questions :</label>
+    <div>
+      <input type="checkbox" id="symbolQuestions" checked> Symboles
+      <input type="checkbox" id="numberQuestions"> Numéros atomiques
+      <input type="checkbox" id="categoryQuestions"> Catégories
+    </div>
   </div>
+  <button onclick="startQuiz()">Démarrer le Quiz 🚀</button>
+</div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+<!-- Ajout d'un chronomètre et barre de progression -->
+<div id="quizStats">
+  <div id="timer">⏳ Temps : <span id="time">00:00</span></div>
+  <div id="progress">Question <span id="currentQ">1</span>/<span id="totalQ">10</span></div>
+</div>
+
+<!-- Modification du feedback pour afficher plus d'informations -->
+<div id="quizFeedback" class="feedback-box">
+  <p id="feedbackText"></p>
+  <button onclick="nextQuizQuestion()" id="nextButton" style="display:none;">Suivant ➡️</button>
+</div>
