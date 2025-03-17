@@ -4,32 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Tableau Périodique - Quiz HPI</title>
   <link rel="stylesheet" href="style.css">
+  <title>Tableau Périodique Interactif</title>
 </head>
 <body>
-  <h1>🔬 Quiz sur le Tableau Périodique - Vivre le HPI!</h1>
-  <div id="quiz-container">
-    <p id="quiz-question">Cliquez sur "Démarrer le Quiz" pour commencer !</p>
-    <button onclick="startQuiz()">Démarrer le Quiz</button>
-    <button onclick="resetQuiz()" style="display:none;">Annuler le Quiz</button>
-    <p id="quiz-score"></p>
+  <div class="container">
+    <h1>Tableau Périodique Interactif 🌐</h1>
+    
+    <!-- Quiz -->
+    <div id="quiz">
+      <h2 id="quizQuestion">Chargement du quiz...</h2>
+      <button onclick="startQuiz()">Recommencer le quiz 🔄</button>
+    </div>
+    
+    <!-- Tableau périodique -->
+    <div id="periodicTable"></div>
   </div>
-
-  <div id="popup" class="popup"></div>
-
-  <h2>Tableau Périodique</h2>
-  <div class="grid-container" id="periodicTable"></div>
-
-  <div id="elementDetails" class="details-box">
-    <h2>Détails de l'Élément</h2>
-    <p id="elementName">Clique sur un élément pour voir ses détails</p>
-    <p id="elementProperties"></p>
-    <p id="elementExample"></p>
-    <p id="elementApplications"></p>
-    <a id="wikiLink" href="#" target="_blank" style="display:none;">En savoir plus sur Wikipédia</a>
-  </div>
-
+  
   <script src="script.js"></script>
 </body>
 </html>
